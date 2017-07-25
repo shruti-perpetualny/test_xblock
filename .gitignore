@@ -1,0 +1,5 @@
+*.pyc
+
+testxblock_xblock.egg-info/
+.git/
+.gitignore/
