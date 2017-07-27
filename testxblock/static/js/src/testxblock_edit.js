@@ -75,7 +75,6 @@ function TestXBlockEdit(runtime, element) {
           console.log("plz click on paragraph give below");
         } 
       else {
-        alert(x);
         $('#def').val("");
         $("#key").val(x);
         $('#keyword').show();
@@ -134,7 +133,6 @@ function TestXBlockEdit(runtime, element) {
                     data: JSON.stringify({ "keyword": key, "defination": def }),
                     dataType: "json",
                     success: function(result) {
-                        $('#def').val("");
 
                         //var key_id = "span#" + key
                         //$(key_id).css("color", "blue");
