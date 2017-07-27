@@ -9,3 +9,13 @@ textarea{
 	width:500px;
 	height: 200px;
 }
+#result{
+	padding: 5px;
+	border:solid black 2px;
+}
+li#show{
+	display: none;
+}
+#keyword{
+	display: none;
+}
