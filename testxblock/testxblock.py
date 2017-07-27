@@ -5,7 +5,7 @@ import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String
 from xblock.fragment import Fragment
-from para_xblock.models import DictXBlock_Key
+from common.djangoapps.para_xblock.models import DictXBlock_Key
 from jinja2 import Environment, PackageLoader
 
 env = Environment(loader=PackageLoader('testxblock', 'static/html'))
