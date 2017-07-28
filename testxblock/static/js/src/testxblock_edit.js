@@ -54,7 +54,7 @@ function TestXBlockEdit(runtime, element) {
         
          runtime.notify('save', {state: 'start'});
         
-        var handlerUrl = runtime.handlerUrl(element, 'submit');
+        var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
         if (handlerUrl)
         {
             alert("yes");
