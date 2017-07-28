@@ -93,8 +93,7 @@ function TestXBlockEdit(runtime, element) {
         
    //  });
 
-
-   $('#send').click(function(e){
+     $(element).find('#send').bind('click', function(event) {
        
         var data = {
             'keyword': $('input#key').val(),
@@ -103,7 +102,7 @@ function TestXBlockEdit(runtime, element) {
         runtime.notify('save', {state: 'start'});
 
         var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-        e.preventDefault();
+        event.preventDefault();
          $.ajax({
         type: "POST",
         url: handlerUrl,
@@ -117,7 +116,7 @@ function TestXBlockEdit(runtime, element) {
             runtime.notify('error', {msg: response.message})
         }
         });
-         
+
     });
 
      $('#sel-textarea').click(function(){
