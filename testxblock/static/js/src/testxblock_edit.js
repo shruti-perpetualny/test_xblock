@@ -94,7 +94,7 @@ function TestXBlockEdit(runtime, element) {
    //  });
 
 
-   $('#send').click(function(){
+   $('#send').click(function(e){
        
         var data = {
             'keyword': $('input#key').val(),
@@ -103,14 +103,13 @@ function TestXBlockEdit(runtime, element) {
         runtime.notify('save', {state: 'start'});
 
         var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-
+        e.preventDefault();
          $.ajax({
         type: "POST",
         url: handlerUrl,
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
-            window.location.reload(false);
                runtime.notify('save', {state: 'end'});
 
         },
@@ -118,6 +117,7 @@ function TestXBlockEdit(runtime, element) {
             runtime.notify('error', {msg: response.message})
         }
         });
+         
     });
 
      $('#sel-textarea').click(function(){
