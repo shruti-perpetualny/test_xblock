@@ -90,7 +90,7 @@ function TestXBlockEdit(runtime, element) {
                 
             }
         });
-        $(this).parent().hide();
+        $(this).hide();
         
         
     });
