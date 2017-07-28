@@ -86,7 +86,7 @@ class TestXBlock(XBlock):
     #     return {"count": self.count}
 
     @XBlock.json_handler
-    def studio_submit(self, data, suffix=''):
+    def submit(self, data, suffix=''):
         """Called when submitting the form in Studio."""
        
         self.display_name=data['display_name']
@@ -94,7 +94,7 @@ class TestXBlock(XBlock):
         return {'result':'success'}
 
     @XBlock.json_handler
-    def post_keyword_studio(self, data, suffix=''):
+    def studio_send(self, data, suffix=''):
         print "111111111111111111111111111111111111111111111111111111111"
         key =DictXBlock_Key(keyword=data["keyword"].lower(),defination=data["defination"])
         key.save()
