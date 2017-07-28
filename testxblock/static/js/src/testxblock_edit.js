@@ -68,31 +68,57 @@ function TestXBlockEdit(runtime, element) {
         });
     });
 
+   // $('#send').click(function(){
+       
+   //      var data = {
+   //          'keyword': $('input#key').val(),
+   //          'defination': $('input#def').val()
+   //      };
+        
+   //       runtime.notify('save', {state: 'start'});
+        
+   //      var handlerUrl = runtime.handlerUrl(element, 'studio_send');
+        
+   //      $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+   //          if (response.result === 'success') {
+   //               runtime.notify('save', {state: 'end'});
+                
+   //              //Reload the whole page :
+   //              window.location.reload(false);
+   //          } else {
+   //              runtime.notify('error', {msg: response.message})
+                
+   //          }
+   //      });        
+        
+   //  });
+
+
    $('#send').click(function(){
        
         var data = {
             'keyword': $('input#key').val(),
             'defination': $('input#def').val()
         };
-        
-         runtime.notify('save', {state: 'start'});
-        
+        runtime.notify('save', {state: 'start'});
+
         var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-        
-        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
-            if (response.result === 'success') {
-                 runtime.notify('save', {state: 'end'});
-                
-                //Reload the whole page :
-                window.location.reload(false);
-            } else {
-                runtime.notify('error', {msg: response.message})
-                
-            }
+
+         $.ajax({
+        type: "POST",
+        url: handlerUrl,
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function(result) {
+               runtime.notify('save', {state: 'end'});
+
+        },
+        error: function(err) {
+            runtime.notify('error', {msg: response.message})
+        }
         });
-        
-        
     });
+
      $('#sel-textarea').click(function(){
       var x= getSelectedTextWithin(document.getElementById('result'));
       if (x == "")
