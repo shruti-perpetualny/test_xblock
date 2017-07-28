@@ -28,7 +28,7 @@ function TestXBlockEdit(runtime, element) {
     // }); 
 
     $(element).find('.action-cancel').bind('click', function() {
-        // runtime.notify('cancel', {});
+         runtime.notify('cancel', {});
     });
 
     $('#save').click(function(){
@@ -52,16 +52,16 @@ function TestXBlockEdit(runtime, element) {
             'paragraph': $('#para_edit').val()
         };
         
-        // runtime.notify('save', {state: 'start'});
+         runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
         $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                // runtime.notify('save', {state: 'end'});
+                runtime.notify('save', {state: 'end'});
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                // runtime.notify('error', {msg: response.message})
+             runtime.notify('error', {msg: response.message})
             }
         });
     });
@@ -73,17 +73,17 @@ function TestXBlockEdit(runtime, element) {
             'defination': $('input#def').val()
         };
         
-        // runtime.notify('save', {state: 'start'});
+         runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'post_keyword_studio');
         $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                // runtime.notify('save', {state: 'end'});
+                runtime.notify('save', {state: 'end'});
                 alert("success");
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                // runtime.notify('error', {msg: response.message})
+                 runtime.notify('error', {msg: response.message})
                 alert("fail");
             }
         });
