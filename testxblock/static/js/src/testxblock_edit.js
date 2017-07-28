@@ -67,7 +67,7 @@ function TestXBlockEdit(runtime, element) {
     });
 
    $('#send').click(function(){
-        debugger;
+       
         var data = {
             'keyword': $('input#key').val(),
             'defination': $('input#def').val()
