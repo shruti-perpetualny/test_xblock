@@ -83,14 +83,13 @@ function TestXBlockEdit(runtime, element) {
             if (response.result === 'success') {
                  runtime.notify('save', {state: 'end'});
                 
-                // Reload the whole page :
-                // window.location.reload(false);
+                //Reload the whole page :
+                window.location.reload(false);
             } else {
                 runtime.notify('error', {msg: response.message})
                 
             }
         });
-        $(this).hide();
         
         
     });
