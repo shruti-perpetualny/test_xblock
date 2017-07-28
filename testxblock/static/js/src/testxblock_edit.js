@@ -28,7 +28,7 @@ function TestXBlockEdit(runtime, element) {
     // }); 
 
     $(element).find('.action-cancel').bind('click', function() {
-        runtime.notify('cancel', {});
+        // runtime.notify('cancel', {});
     });
 
     $('#save').click(function(){
@@ -52,22 +52,43 @@ function TestXBlockEdit(runtime, element) {
             'paragraph': $('#para_edit').val()
         };
         
-        runtime.notify('save', {state: 'start'});
+        // runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
         $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                runtime.notify('save', {state: 'end'});
+                // runtime.notify('save', {state: 'end'});
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                runtime.notify('error', {msg: response.message})
+                // runtime.notify('error', {msg: response.message})
             }
         });
     });
 
-  
-
+   $('#send').click(function(){
+        debugger;
+        var data = {
+            'keyword': $('input#key').val(),
+            'defination': $('input#def').val()
+        };
+        
+        // runtime.notify('save', {state: 'start'});
+        
+        var handlerUrl = runtime.handlerUrl(element, 'post_keyword_studio');
+        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+            if (response.result === 'success') {
+                // runtime.notify('save', {state: 'end'});
+                alert("success");
+                // Reload the whole page :
+                // window.location.reload(false);
+            } else {
+                // runtime.notify('error', {msg: response.message})
+                alert("fail");
+            }
+        });
+        $(this).parent().hide();
+    });
      $('#sel-textarea').click(function(){
       var x= getSelectedTextWithin(document.getElementById('result'));
       if (x == "")
@@ -120,38 +141,7 @@ function TestXBlockEdit(runtime, element) {
     return selectedText;
   }
 
-   var handlerUrld = runtime.handlerUrl(element, 'post_keyword_studio');
-        $('#send', element).click(function(eventObject) {
-            eventObject.preventDefault();
-            var key = $('input#key').val();
-            var def = $('input#def').val();
-            if (def) {
-
-                $.ajax({
-                    type: "POST",
-                    url: handlerUrld,
-                    data: JSON.stringify({ "keyword": key, "defination": def }),
-                    dataType: "json",
-                    success: function(result) {
-
-                        //var key_id = "span#" + key
-                        //$(key_id).css("color", "blue");
-
-                        //alert("defination updated"); 
-                        // var url =  "/course/" + scenario_id + "/" + course_id + "/" + lesson_id + "/" 
-                        // window.location.href = url;            
-                    },
-                    error: function(err) {
-                        //alert("Failure!!")
-                        console.log(err)
-                    }
-                });
-                $(this).parent().hide();
-            } else {
-                $('#send').notify("plz fill the defination", { position: "top" });
-
-            }
-        });
+   
 
 
 }
