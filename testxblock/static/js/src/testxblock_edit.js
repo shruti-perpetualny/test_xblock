@@ -109,8 +109,9 @@ function TestXBlockEdit(runtime, element) {
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
+            event.preventDefault();
                runtime.notify('save', {state: 'end'});
-
+                event.preventDefault();
         },
         error: function(err) {
             runtime.notify('error', {msg: response.message})
