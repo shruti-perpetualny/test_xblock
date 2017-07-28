@@ -55,25 +55,17 @@ function TestXBlockEdit(runtime, element) {
          runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
-        if (handlerUrl)
-        {
-            alert("yes");
-            $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                // runtime.notify('save', {state: 'end'});
-                alert("success");
+                 runtime.notify('save', {state: 'end'});
+                
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                // runtime.notify('error', {msg: response.message})
-                alert("fail");
+                 runtime.notify('error', {msg: response.message})
+           
             }
         });
-        }
-        else
-        {
-            alert("no");
-        }
     });
 
    $('#send').click(function(){
@@ -86,26 +78,20 @@ function TestXBlockEdit(runtime, element) {
          runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-        if (handlerUrl)
-        {
-            alert("yes");
-            $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+        
+        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                // runtime.notify('save', {state: 'end'});
-                alert("success");
+                 runtime.notify('save', {state: 'end'});
+                
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                // runtime.notify('error', {msg: response.message})
-                alert("fail");
+                runtime.notify('error', {msg: response.message})
+                
             }
         });
         $(this).parent().hide();
-        }
-        else
-        {
-            alert("no");
-        }
+        
         
     });
      $('#sel-textarea').click(function(){
