@@ -110,6 +110,7 @@ function TestXBlockEdit(runtime, element) {
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
+            window.location.reload(false);
                runtime.notify('save', {state: 'end'});
 
         },
