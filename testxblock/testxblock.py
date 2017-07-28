@@ -95,6 +95,7 @@ class TestXBlock(XBlock):
 
     @XBlock.json_handler
     def post_keyword_studio(self, data, suffix=''):
+        print "111111111111111111111111111111111111111111111111111111111"
         key =DictXBlock_Key(keyword=data["keyword"].lower(),defination=data["defination"])
         key.save()
         return {'result':'success'}

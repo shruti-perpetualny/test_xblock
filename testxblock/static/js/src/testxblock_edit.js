@@ -55,15 +55,25 @@ function TestXBlockEdit(runtime, element) {
          runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
-        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+        if (handlerUrl)
+        {
+            alert("yes");
+            $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                runtime.notify('save', {state: 'end'});
+                // runtime.notify('save', {state: 'end'});
+                alert("success");
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-             runtime.notify('error', {msg: response.message})
+                // runtime.notify('error', {msg: response.message})
+                alert("fail");
             }
         });
+        }
+        else
+        {
+            alert("no");
+        }
     });
 
    $('#send').click(function(){
@@ -76,18 +86,27 @@ function TestXBlockEdit(runtime, element) {
          runtime.notify('save', {state: 'start'});
         
         var handlerUrl = runtime.handlerUrl(element, 'post_keyword_studio');
-        $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+        if (handlerUrl)
+        {
+            alert("yes");
+            $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
             if (response.result === 'success') {
-                runtime.notify('save', {state: 'end'});
+                // runtime.notify('save', {state: 'end'});
                 alert("success");
                 // Reload the whole page :
                 // window.location.reload(false);
             } else {
-                 runtime.notify('error', {msg: response.message})
+                // runtime.notify('error', {msg: response.message})
                 alert("fail");
             }
         });
         $(this).parent().hide();
+        }
+        else
+        {
+            alert("no");
+        }
+        
     });
      $('#sel-textarea').click(function(){
       var x= getSelectedTextWithin(document.getElementById('result'));
