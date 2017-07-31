@@ -68,33 +68,10 @@ function TestXBlockEdit(runtime, element) {
         });
     });
 
-   // $('#send').click(function(){
-       
-   //      var data = {
-   //          'keyword': $('input#key').val(),
-   //          'defination': $('input#def').val()
-   //      };
-        
-   //       runtime.notify('save', {state: 'start'});
-        
-   //      var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-        
-   //      $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
-   //          if (response.result === 'success') {
-   //               runtime.notify('save', {state: 'end'});
-                
-   //              //Reload the whole page :
-   //              window.location.reload(false);
-   //          } else {
-   //              runtime.notify('error', {msg: response.message})
-                
-   //          }
-   //      });        
-        
-   //  });
 
-     $(element).find('#send').bind('click', function(event) {
-       
+
+      $('#send').click(function(e){
+        e.preventDefault();
         var data = {
             'keyword': $('input#key').val(),
             'defination': $('input#def').val()
@@ -102,22 +79,22 @@ function TestXBlockEdit(runtime, element) {
         runtime.notify('save', {state: 'start'});
 
         var handlerUrl = runtime.handlerUrl(element, 'studio_send');
-        event.preventDefault();
-         $.ajax({
+
+        $.ajax({
         type: "POST",
         url: handlerUrl,
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
-            event.preventDefault();
-               runtime.notify('save', {state: 'end'});
-                event.preventDefault();
+            alert("success!!")
+            runtime.notify('save', {state: 'end'});
+
         },
         error: function(err) {
+            alert("Failure!!")
             runtime.notify('error', {msg: response.message})
         }
         });
-
     });
 
      $('#sel-textarea').click(function(){
