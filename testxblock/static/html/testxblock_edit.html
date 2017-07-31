@@ -17,7 +17,9 @@
                 <textarea class="input setting-input" id="para_edit" type="text">{{ paragraph }}
                 </textarea>
             </div>
-            <span class="tip setting-help">The content in pargraph.<input type="button" id="save" value="Done" /></span>
+            <span class="tip setting-help">The content in pargraph.
+            <a href="#" class="button action-primary action-save" id="save">Done</a>
+            <!-- <input type="button" id="save" value="Done" /> --></span>
             
         </li>
        
@@ -28,8 +30,12 @@
             
                      </div>
                 </div>
-                <span class="tip setting-help"><br><input type="button" id="edit_para" value="Edit" />
-                <input type="button" id="sel-textarea" value="Add defination " /></span>
+                <span class="tip setting-help"><br>
+                <a href="#" class="button action-primary action-save" id="edit_para">Edit</a>
+                <a href="#" class="button action-primary action-save" id="sel-textarea">Add defination</a>
+                <!-- <input type="button" id="edit_para" value="id="edit_para"" />
+                <input type="button" id="sel-textarea" value="Add defination " /> -->
+                </span>
         </li>
         <li>
                 <div id="keyword">
@@ -41,8 +47,12 @@
                 <label>Defination: <span>*</span></label>
                 <br/>
                 <input rows="10" cols="30" id="def" placeholder="defination of above word" /><br><br><br><br>
-                 <input type="button" id="send" class="btn-success" value="save keyword" /></span>
-                <input type="button" class="btn-success" id="reset" value="Reset"/>
+                <span class="tip setting-help">
+                <a href="#" class="button action-primary action-save" id="send">Save keyword</a>
+                <a href="#" class="button action-primary action-save" id="reset">Reset</a>
+                </span>
+                <!-- <input type="button" id="send" class="btn-success" value="save keyword" />
+                <input type="button" class="btn-success" id="reset" value="Reset"/> -->
                 <br/>
                 </div>
         </li>           
