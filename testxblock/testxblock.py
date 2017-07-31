@@ -50,8 +50,13 @@ class TestXBlock(XBlock):
         frag = Fragment()
         template = env.get_template('testxblock.html')
         frag.add_content(template.render(**context))
+        frag.add_css(self.resource_string("static/css/popup.css"))
+        frag.add_css(self.resource_string("static/css/transition.css"))
         frag.add_css(self.resource_string("static/css/testxblock.css"))
         frag.add_javascript(self.resource_string("static/js/src/testxblock.js"))
+        frag.add_javascript(self.resource_string("static/js/src/keywordize.js"))
+        frag.add_javascript(self.resource_string("static/js/src/popup.js"))
+        frag.add_javascript(self.resource_string("static/js/src/transition.js"))
         frag.initialize_js('TestXBlock')
         return frag
 
@@ -67,8 +72,13 @@ class TestXBlock(XBlock):
         frag = Fragment()
         template = env.get_template('testxblock_edit.html')
         frag.add_content(template.render(**context))
+        frag.add_css(self.resource_string("static/css/popup.css"))
+        frag.add_css(self.resource_string("static/css/transition.css"))
         frag.add_css(self.resource_string("static/css/testxblock_edit.css"))
         frag.add_javascript(self.resource_string("static/js/src/testxblock_edit.js"))
+        frag.add_javascript(self.resource_string("static/js/src/keywordize.js"))
+        frag.add_javascript(self.resource_string("static/js/src/popup.js"))
+        frag.add_javascript(self.resource_string("static/js/src/transition.js"))
         frag.initialize_js('TestXBlockEdit')
         return frag
 
@@ -109,8 +119,22 @@ class TestXBlock(XBlock):
             keyword={}
             keyword["keyword"]=key.keyword
             keyword["defination"]=key.defination                
+            keywords.append(keyword)          
+            
+        return {"keywords": keywords}
+
+    @XBlock.json_handler
+    def  get_keyword_student(self, data, suffix=''): 
+           
+        keys=DictXBlock_Key.objects.all()
+        keywords=[]
+        
+        for key in keys:
+            keyword={}
+            keyword["keyword"]=key.keyword
+            keyword["defination"]=key.defination                
             keywords.append(keyword)
-          
+            print
             
         return {"keywords": keywords}
 

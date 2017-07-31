@@ -97,7 +97,7 @@ function TestXBlockEdit(runtime, element) {
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
-                  $('#keyword').hide();
+                 $('#keyword').hide();
                  var x=result.key
                  var spn = '<span data-word=\"'+x.toLowerCase()+'\">' + x + '</span>';
                  $('#result').html($('#result').html().replace(x, spn));

@@ -19,3 +19,6 @@ li#show{
 #keyword{
 	display: none;
 }
+#sel-textarea{
+	width: 150px
+}
