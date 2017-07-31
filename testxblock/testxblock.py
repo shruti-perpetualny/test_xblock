@@ -72,14 +72,8 @@ class TestXBlock(XBlock):
         frag = Fragment()
         template = env.get_template('testxblock_edit.html')
         frag.add_content(template.render(**context))
-        frag.add_css(self.resource_string("static/css/popup.css"))
-        frag.add_css(self.resource_string("static/css/transition.css"))
         frag.add_css(self.resource_string("static/css/testxblock_edit.css"))
         frag.add_javascript(self.resource_string("static/js/src/testxblock_edit.js"))
-        frag.add_javascript(self.resource_string("static/js/src/keywordize.js"))
-        frag.add_javascript(self.resource_string("static/js/src/popup.js"))
-        frag.add_javascript(self.resource_string("static/js/src/transition.js"))
-        frag.initialize_js('TestXBlockEdit')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
