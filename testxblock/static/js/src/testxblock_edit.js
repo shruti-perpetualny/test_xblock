@@ -1,69 +1,61 @@
 function TestXBlockEdit(runtime, element) {
 
-   // $(element).find('.save-button').bind('click', function() {
-   //      var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
-
-   //      var para = $('.para').val();
-   //      var data = {
-   //          paragraph: para
-   //      };
-
-   //      var test = JSON.stringify(data);
-
-   //      runtime.notify('save', {state: 'start'});
-   //      $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
-   //          runtime.notify('save', {state:'end'});
-   //      });
-   //  });
-
-   //  $(element).find('.cancel-button').bind('click', function() {
-   //      runtime.notify('cancel', {});
-   //  });
-    // $('#sel-input').click(function(){
-    //   console.log(jQuery().jquery);
-    //   console.log($('textarea').selection())
-    // alert($('textarea').selection());
-
-    // $('textarea').focus();
-    // }); 
-
+   
     var a=$('#para_edit').val();
     var b = "there is no content";
     
     for (var i = 0, len = b.length; i < len; i++)
         if (a.charAt(i) != b.charAt(i)) 
         {
-             var para=$('#para_edit').val();
              $('li#show').show();
              $('li#edit').hide();
-             $('#result').text(para);
+             $('#result').text(a);
         }
         else
         {
-          var para=$('#para_edit').val();
           $('li#show').hide();
           $('li#edit').show();
-          $('#keyword').hide();
+          $('#result').text(a);
         }
-        
 
+    var data = { };
+    var handlerUrla = runtime.handlerUrl(element, 'get_keywords_studio');
+    
+    $.ajax({
+        type: "POST",
+        url: handlerUrla,
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function(response) {
+
+          var result=response.keywords  
+          var text = $('#para_edit').val(); 
+           for (i = 0; i < result.length; i++) 
+        {
+                var spn = '<span data-word=\"'+result[i].keyword.toLowerCase()+'\">' + result[i].keyword+ '</span>';
+                $('#result').html($('#result').html().replace(result[i].keyword, spn));
+                $("[data-word='" + result[i].keyword + "']").css("color", "blue");    
+        }
+            
+
+        },
+        error: function(err) {
+            console.log(err)
+        }
+    });
 
     $(element).find('.action-cancel').bind('click', function() {
          runtime.notify('cancel', {});
     });
 
     $('#save').click(function(){
-        var para=$('#para_edit').val();
         $('li#show').show();
         $('li#edit').hide();
-        $('#result').text(para);
 
     });
     $('#edit_para').click(function(){
-        var para=$('#para_edit').val();
-        $('li#show').hide();
+         $('li#show').hide();
         $('li#edit').show();
-        $('#keyword').hide();
 
     });
 
@@ -80,8 +72,6 @@ function TestXBlockEdit(runtime, element) {
             if (response.result === 'success') {
                  runtime.notify('save', {state: 'end'});
                 
-                // Reload the whole page :
-                // window.location.reload(false);
             } else {
                  runtime.notify('error', {msg: response.message})
            
@@ -107,12 +97,15 @@ function TestXBlockEdit(runtime, element) {
         data: JSON.stringify(data),
         dataType: "json",
         success: function(result) {
-            alert("success!!")
-            runtime.notify('save', {state: 'end'});
+                  $('#keyword').hide();
+                 var x=result.key
+                 var spn = '<span data-word=\"'+x.toLowerCase()+'\">' + x + '</span>';
+                 $('#result').html($('#result').html().replace(x, spn));
+                 $("[data-word='" + x + "']").css("color", "blue");
+                 runtime.notify('save', {state: 'end'});
 
         },
         error: function(err) {
-            alert("Failure!!")
             runtime.notify('error', {msg: response.message})
         }
         });

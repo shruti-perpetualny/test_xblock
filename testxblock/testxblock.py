@@ -97,7 +97,22 @@ class TestXBlock(XBlock):
     def studio_send(self, data, suffix=''):
         key =DictXBlock_Key(keyword=data["keyword"].lower(),defination=data["defination"])
         key.save()
-        return {'result':'success'}
+        return {'key':key.keyword}
+        
+    @XBlock.json_handler
+    def get_keywords_studio(self, data,suffix=''):
+
+        keys=DictXBlock_Key.objects.all()
+        keywords=[]
+        
+        for key in keys:
+            keyword={}
+            keyword["keyword"]=key.keyword
+            keyword["defination"]=key.defination                
+            keywords.append(keyword)
+          
+            
+        return {"keywords": keywords}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
