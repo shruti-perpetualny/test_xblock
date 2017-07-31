@@ -28,13 +28,20 @@ function TestXBlockEdit(runtime, element) {
     // }); 
 
     var a=$('#para_edit').val();
-    var b = "No";
+    var b = "there is no content";
     $('li#edit').hide();
     for (var i = 0, len = b.length; i < len; i++)
         if (a.charAt(i) != b.charAt(i)) 
         {
              $('li#show').show();
+             $('#result').text(a);
         }
+        else
+        {
+          alert("empty para")
+          $('li#edit').show();
+        }
+        
         
 
     $(element).find('.action-cancel').bind('click', function() {
