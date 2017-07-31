@@ -29,20 +29,24 @@ function TestXBlockEdit(runtime, element) {
 
     var a=$('#para_edit').val();
     var b = "there is no content";
-    $('li#edit').hide();
+    
     for (var i = 0, len = b.length; i < len; i++)
         if (a.charAt(i) != b.charAt(i)) 
         {
+             var para=$('#para_edit').val();
              $('li#show').show();
-             $('#result').text(a);
+             $('li#edit').hide();
+             $('#result').text(para);
         }
         else
         {
-          alert("empty para")
+          var para=$('#para_edit').val();
+          $('li#show').hide();
           $('li#edit').show();
+          $('#keyword').hide();
         }
         
-        
+
 
     $(element).find('.action-cancel').bind('click', function() {
          runtime.notify('cancel', {});
