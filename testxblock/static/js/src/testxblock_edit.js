@@ -27,6 +27,16 @@ function TestXBlockEdit(runtime, element) {
     // $('textarea').focus();
     // }); 
 
+    var a=$('#para_edit').val();
+    var b = "No";
+    $('li#edit').hide();
+    for (var i = 0, len = b.length; i < len; i++)
+        if (a.charAt(i) != b.charAt(i)) 
+        {
+             $('li#show').show();
+        }
+        
+
     $(element).find('.action-cancel').bind('click', function() {
          runtime.notify('cancel', {});
     });
